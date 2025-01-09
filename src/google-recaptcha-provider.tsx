@@ -85,11 +85,12 @@ export function GoogleReCaptchaProvider({
 
       return;
     }
+    console.log('the container is ', { container })
 
     const scriptId = scriptProps?.id || 'google-recaptcha-v3';
     const onLoadCallbackName = scriptProps?.onLoadCallbackName || 'onRecaptchaLoadCallback';
 
-    ((window as unknown) as {[key: string]: () => void})[onLoadCallbackName] = () => {
+    ((window as unknown) as { [key: string]: () => void })[onLoadCallbackName] = () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       const grecaptcha = useEnterprise
         ? (window as any).grecaptcha.enterprise
